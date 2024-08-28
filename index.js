@@ -15,7 +15,7 @@ app.get('/card-v1', async (req, res) => {
   // dapatkan data dari query parameter
   const text = req.query.text || 'welcome!'; // Teks dari parameter query
   const color = req.query.color.replace(/%23/g, '#') || '#F1F5F9';
-  const background = req.query.color.replace(/%23/g, '#') || '#020617';
+  const background = req.query.background.replace(/%23/g, '#') || '#020617';
   const imageDefault = path.join(__dirname, 'default.jpg');
   let image = false;
   try {
