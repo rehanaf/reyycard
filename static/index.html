@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card Maker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <style>
-        @font-face {
-            font-family: 'Poppins';
-            src: url('fonts/Poppins-Regular.ttf');
-        }
-
         body {
             font-family: Poppins, sans-serif;
         }
@@ -20,7 +18,9 @@
     </style>
 </head>
 <body>
-    <form action="https://card-maker-eta.vercel.app/card-v1">
+    <h1>Card Maker</h1>
+    <form action="card-v1">
+        <h2>Card v1</h2>
         <label for="text">Text</label>
         <input type="text" name="text" id="text">
         <label for="image">Image URL</label>
