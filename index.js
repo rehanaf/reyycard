@@ -5,8 +5,9 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
+registerFont(path.join(__dirname, 'fonts', 'Poppins-Regular.ttf'), { family: 'Poppins' })
+
 app.get('/card-v1', async (req, res) => {
-  registerFont('https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJnecmNE.woff2', { family: 'Poppins' })
   // dapatkan data dari query parameter
   const text = req.query.text || 'welcome!'; // Teks dari parameter query
   const color = req.query.color || '#F1F5F9';
