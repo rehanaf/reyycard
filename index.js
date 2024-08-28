@@ -7,6 +7,10 @@ const PORT = 3000;
 
 registerFont(path.join(__dirname, 'fonts', 'Poppins-Regular.ttf'), { family: 'Poppins' })
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'static', 'index.html'));
+})
+
 app.get('/card-v1', async (req, res) => {
   // dapatkan data dari query parameter
   const text = req.query.text || 'welcome!'; // Teks dari parameter query
