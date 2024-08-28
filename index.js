@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-registerFont(path.join(__dirname, 'fonts', 'Poppins-Regular.ttf'), { family: 'Poppins' })
+registerFont(path.join(__dirname, 'static', 'fonts', 'Poppins-Regular.ttf'), { family: 'Poppins' })
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'static', 'index.html'));
@@ -13,9 +13,9 @@ app.get('/', (req, res) => {
 
 app.get('/card-v1', async (req, res) => {
   // dapatkan data dari query parameter
-  const text = req.query.text || 'welcome!'; // Teks dari parameter query
-  const color = req.query.color || '#F1F5F9';
-  const background = req.query.background || '#020617';
+  const text = req.query.text || 'welcome!';
+  const color = req.query.color?.replace(/%23/g, '#') || '#F1F5F9';
+  const background = req.query.background?.replace(/%23/g, '#') || '#020617';
   const imageDefault = path.join(__dirname, 'default.jpg');
   let image = false;
   try {
