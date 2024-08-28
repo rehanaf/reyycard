@@ -11,10 +11,6 @@
         body {
             font-family: Poppins, sans-serif;
         }
-
-        input {
-            display: block;
-        }
     </style>
 </head>
 <body>
@@ -22,13 +18,18 @@
     <form action="card-v1">
         <h2>Card v1</h2>
         <label for="text">Text</label>
+        <br>
         <input type="text" name="text" id="text">
+        <br>
         <label for="image">Image URL</label>
+        <br>
         <input type="text" name="image" id="image">
+        <br><br>
         <label for="color">Color</label>
         <input type="color" name="color" id="color">
         <label for="background">Background</label>
         <input type="color" name="color" id="background">
+        <br><br>
         <button type="submit">Make</button>
     </form>
 </body>
