@@ -11,6 +11,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'static', 'index.html'));
 })
 
+app.get('/log', (req, res) => {
+  res.end(JSON.stringify(req.body))
+})
+
 app.get('/card-v1', async (req, res) => {
   // dapatkan data dari query parameter
   const text = req.query.text || 'welcome!';
