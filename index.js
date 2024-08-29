@@ -5,7 +5,11 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-registerFont(path.join(__dirname, 'static', 'fonts', 'Poppins-Regular.ttf'), { family: 'Poppins' })
+const addFont = (family, fileName) => {
+  registerFont(path.join(__dirname, 'static', 'fonts', fileName), { family: family })
+}
+
+addFont('Poppins', 'Poppins-Regular.ttf');
 
 app.use(express.static('static'));
 
