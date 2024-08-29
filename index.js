@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'static', 'index.html'));
 })
 
-app.get('/log', (req, res) => {
+app.post('/log', (req, res) => {
   console.log(req.body)
 })
 
