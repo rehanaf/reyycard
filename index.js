@@ -11,7 +11,7 @@ const addFont = (family, fileName) => {
 
 addFont('Poppins', 'Poppins-Regular.ttf');
 
-app.use(express.static('static'));
+app.use(express.static(path.join(__dirname, 'static')));
 
 app.get('/card-v1', async (req, res) => {
   // dapatkan data dari query parameter
