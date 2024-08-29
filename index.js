@@ -7,27 +7,21 @@ const PORT = 3000;
 
 registerFont(path.join(__dirname, 'static', 'fonts', 'Poppins-Regular.ttf'), { family: 'Poppins' })
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'static', 'index.html'));
-})
-
-app.post('/log', (req, res) => {
-  console.log(req.body)
-})
+app.use(express.static('static'));
 
 app.get('/card-v1', async (req, res) => {
   // dapatkan data dari query parameter
-  const text = req.query.text || 'welcome!';
+  const text = req.query.text || 'reyycard.vercel.app';
   const color = req.query.color?.replace(/%23/g, '#') || '#F1F5F9';
   const background = req.query.background?.replace(/%23/g, '#') || '#020617';
   const imageDefault = path.join(__dirname, 'default.jpg');
   let image = false;
   try {
     image = await loadImage(req.query.image || imageDefault);
-  } catch(error) {
+  } catch (error) {
     image = await loadImage(imageDefault);
   }
-  
+
   // Buat canvas
   const width = 640;
   const height = 360;
@@ -39,18 +33,18 @@ app.get('/card-v1', async (req, res) => {
   ctx.fillRect(0, 0, width, height);
 
   // Muat gambar dan gambar potong bulat
-    const x = width / 2;
-    const y = 60;
+  const x = width / 2;
+  const y = 60;
 
-    // Gambar lingkaran putih sebagai potongan gambar
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(x, y + 90, 90, 0, Math.PI * 2);
-    ctx.clip();
+  // Gambar lingkaran putih sebagai potongan gambar
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(x, y + 90, 90, 0, Math.PI * 2);
+  ctx.clip();
 
-    // Gambar gambar yang sudah dipotong
-    ctx.drawImage(image, x - 90, y, 180, 180);
-    ctx.restore();
+  // Gambar gambar yang sudah dipotong
+  ctx.drawImage(image, x - 90, y, 180, 180);
+  ctx.restore();
 
   // Gambar teks
   ctx.fillStyle = color;
