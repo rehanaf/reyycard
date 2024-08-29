@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/log', (req, res) => {
-  res.end(JSON.stringify(req.body))
+  console.log(req.body)
 })
 
 app.get('/card-v1', async (req, res) => {
