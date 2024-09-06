@@ -393,5 +393,6 @@ app.get('/v1', async (req, res) => {
 
 
 app.listen(PORT, () => {
+  console.log('Reyycard v1');
   console.log(`Server running at http://localhost:${PORT}`);
 });

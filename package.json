@@ -4,10 +4,10 @@
   "description": "Image Card Maker",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
-  "keywords": ["image", "generator"],
+  "keywords": ["image", "generator", "card"],
   "author": "rehanaf",
   "license": "ISC",
   "dependencies": {
