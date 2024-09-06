@@ -314,8 +314,8 @@ app.use(express.static(path.join(__dirname, 'static')));
 app.get('/v0', async (req, res) => {
   // dapatkan data dari query parameter
   const text = req.query.text || 'reyycard v0';
-  const color = getColor(req.query.color || 'sky-400');
-  const bg = getColor(req.query.bg || 'slate-950');
+  const color = getColor(req.query.color || 'white');
+  const bg = getColor(req.query.bg || 'black');
   const circle = req.query?.circle != 'false' && req.query?.circle !== undefined
   let image = '';
   try {
@@ -341,8 +341,8 @@ app.get('/v0', async (req, res) => {
 app.get('/v1', async (req, res) => {
   // dapatkan data dari query parameter
   const text = req.query.text || 'reyycard v1';
-  const color = getColor(req.query.color || 'sky-400');
-  const bg = getColor(req.query.bg || 'slate-950');
+  const color = getColor(req.query.color || 'white');
+  const bg = getColor(req.query.bg || 'black');
   const circle = req.query?.circle != 'false' && req.query?.circle !== undefined
   let image = '';
   try {
