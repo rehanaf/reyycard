@@ -43,7 +43,8 @@ app.get('/v1', async (req, res) => {
   // dapatkan data dari query parameter
   const text = req.query.text || 'reyycard v1';
   const color = req.query.color || '#F1F5F9';
-  const background = req.query.background?.replace(/%23/g, '#') || '#020617';
+  const background = req.query.background || '#020617';
+  const circle = req.query?.circle != "false" && req.query?.circle !== undefined
   const imageDefault = path.join(__dirname, 'default.jpg');
   let image = false;
   try {
@@ -68,12 +69,16 @@ app.get('/v1', async (req, res) => {
 
   // Gambar lingkaran putih sebagai potongan gambar
   ctx.save();
-  ctx.beginPath();
-  ctx.arc(x, y + 180, 180, 0, Math.PI * 2);
-  ctx.clip();
+  if(circle) {
+    ctx.beginPath();
+    ctx.arc(x, y + 180, 180, 0, Math.PI * 2);
+    ctx.clip();
+  }
 
-  // Gambar gambar yang sudah dipotong
-  ctx.drawImage(image, x - 180, y, 360, 360);
+  // draw image
+  const imageHeight = 360;
+  const imageWidth = circle ? imageHeight : imageHeight * (image.width / image.height);
+  ctx.drawImage(image, x - imageWidth / 2, y, imageWidth, imageHeight);
   ctx.restore();
 
   // Gambar teks
