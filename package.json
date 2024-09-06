@@ -1,14 +1,14 @@
 {
-  "name": "canvas",
+  "name": "reyycard",
   "version": "1.0.0",
-  "description": "",
+  "description": "Image Card Maker",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["image", "generator"],
+  "author": "rehanaf",
   "license": "ISC",
   "dependencies": {
     "canvas": "^2.11.2",
