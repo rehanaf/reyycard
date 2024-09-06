@@ -16,7 +16,18 @@ addFont('Poppins', 700, 'Poppins-Bold.ttf');
 app.use(express.static(path.join(__dirname, 'static')));
 
 
-app.get('/v0', (req, res) => {
+app.get('/v0', async (req, res) => {
+  // dapatkan data dari query parameter
+  const text = req.query.text || 'reyycard v1';
+  const color = req.query.color || '#F1F5F9';
+  const background = req.query.background || '#020617';
+  const circle = req.query?.circle != 'false' && req.query?.circle !== undefined
+  let image = '';
+  try {
+    image = await loadImage(req.query.image);
+  } catch (error) {
+    image = await loadImage(path.join(__dirname, 'static', 'icon.png'));
+  }
   // Buat canvas
   const width = 1200;
   const height = 720;
@@ -27,13 +38,6 @@ app.get('/v0', (req, res) => {
   ctx.fillStyle = '#ffff00';
   ctx.fillRect(0, 0, width, height);
 
-  // Menggambar lingkaran pertama
-  ctx.arc(100, 75, 50, 0, Math.PI * 2, false);
-  ctx.stroke(); // Menggambar lingkaran pertama
-
-  // Menggambar lingkaran kedua tanpa beginPath
-  ctx.arc(150, 150, 50, 0, Math.PI * 2, false);
-  ctx.stroke(); // Menggambar lingkaran kedua
   // Kirim gambar canvas sebagai respons
   res.setHeader('Content-Type', 'image/png');
   res.send(canvas.toBuffer('image/png'));
@@ -44,13 +48,12 @@ app.get('/v1', async (req, res) => {
   const text = req.query.text || 'reyycard v1';
   const color = req.query.color || '#F1F5F9';
   const background = req.query.background || '#020617';
-  const circle = req.query?.circle != "false" && req.query?.circle !== undefined
-  const imageDefault = path.join(__dirname, 'default.jpg');
-  let image = false;
+  const circle = req.query?.circle != 'false' && req.query?.circle !== undefined
+  let image = '';
   try {
-    image = await loadImage(req.query.image || imageDefault);
+    image = await loadImage(req.query.image);
   } catch (error) {
-    image = await loadImage(imageDefault);
+    image = await loadImage(path.join(__dirname, 'static', 'icon.png'));
   }
 
   // Buat canvas
