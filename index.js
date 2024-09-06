@@ -13,6 +13,8 @@ addFont('Poppins', 400, 'Poppins-Regular.ttf');
 addFont('Poppins', 500, 'Poppins-Medium.ttf');
 addFont('Poppins', 700, 'Poppins-Bold.ttf');
 
+const favicon = path.join(__dirname, 'static', 'icon.png');
+
 app.use(express.static(path.join(__dirname, 'static')));
 
 
@@ -24,9 +26,9 @@ app.get('/v0', async (req, res) => {
   const circle = req.query?.circle != 'false' && req.query?.circle !== undefined
   let image = '';
   try {
-    image = await loadImage(req.query.image);
+    image = await loadImage(req.query.image || favicon);
   } catch (error) {
-    image = await loadImage(path.join(__dirname, 'static', 'icon.png'));
+    image = await loadImage(favicon);
   }
   // Buat canvas
   const width = 1200;
@@ -34,8 +36,8 @@ app.get('/v0', async (req, res) => {
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext('2d');
 
-  // Gambar latar belakang putih
-  ctx.fillStyle = '#ffff00';
+  // Gambar latar belakang
+  ctx.fillStyle = background;
   ctx.fillRect(0, 0, width, height);
 
   // Kirim gambar canvas sebagai respons
@@ -51,9 +53,9 @@ app.get('/v1', async (req, res) => {
   const circle = req.query?.circle != 'false' && req.query?.circle !== undefined
   let image = '';
   try {
-    image = await loadImage(req.query.image);
+    image = await loadImage(req.query.image || favicon);
   } catch (error) {
-    image = await loadImage(path.join(__dirname, 'static', 'icon.png'));
+    image = await loadImage(favicon);
   }
 
   // Buat canvas
@@ -62,7 +64,7 @@ app.get('/v1', async (req, res) => {
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext('2d');
 
-  // Gambar latar belakang putih
+  // Gambar latar belakang
   ctx.fillStyle = background;
   ctx.fillRect(0, 0, width, height);
 
