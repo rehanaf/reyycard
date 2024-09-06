@@ -4,15 +4,22 @@
   "description": "Image Card Maker",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "nodemon index.js",
+    "tw": "npx tailwindcss -i ./tailwind.css -o ./static/style.css --watch",
+    "dev": "concurrently \"npm run tw\" \"npm run start\""
   },
-  "keywords": ["image", "generator", "card"],
+  "keywords": [
+    "image",
+    "generator",
+    "card"
+  ],
   "author": "rehanaf",
   "license": "ISC",
   "dependencies": {
     "canvas": "^2.11.2",
+    "concurrently": "^8.2.2",
     "express": "^4.19.2",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "tailwindcss": "^3.4.10"
   }
 }

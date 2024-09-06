@@ -1,38 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:image" content="https://reyycard.vercel.app/v1" />
-    <title>Card Maker</title>
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: Poppins, sans-serif;
-        }
-    </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta property="og:image" content="https://reyycard.vercel.app/v1" />
+	<title>Reyycard - Image Card Maker</title>
+	<link rel="icon" href="/icon.png" type="image/png">
+	<link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>Card Maker</h1>
-    <form action="/v1">
-        <h2>Card v1</h2>
-        <label for="text">Text</label>
-        <br>
-        <input type="text" name="text" id="text">
-        <br>
-        <label for="image">Image URL</label>
-        <br>
-        <input type="text" name="image" id="image">
-        <br><br>
-        <label for="color">Text Color</label>
-        <input type="color" name="color" id="color" value="#F1F5F9">
-        <label for="background">Background Color</label>
-        <input type="color" name="background" id="background" value="#020617">
-        <br><br>
-        <button type="submit">Make</button>
-    </form>
+
+<body class="font-[Poppins] bg-black text-slate-50">
+	<main class="max-w-screen-md mx-auto px-4">
+		<div class="mt-12 text-center">
+			<h1 class="text-4xl font-bold">Reyycard</h1>
+			<p class="mt-2">Image card maker.</p>
+		</div>
+		<div class="mt-12 space-y-6">
+			<details
+				class="group [&_summary::-webkit-details-marker]:hidden relative overflow-hidden rounded-lg border border-gray-800 p-2">
+				<summary class="flex cursor-pointer items-center justify-between space-x-4">
+					<img src="/v1" alt="v1" class="rounded-lg w-1/4">
+					<div class="w-full">
+						<h2 class="font-bold text-xl">/v1</h2>
+						<p>Gambar dan teks arah vertikal.</p>
+					</div>
+					<svg class="size-6 shrink-0 transition duration-300 group-open:-rotate-180" xmlns="http://www.w3.org/2000/svg"
+						fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+					</svg>
+				</summary>
+
+				<h3 class="mt-6 font-bold text-lg">Kueri Parameter</h3>
+				<div class="mt-6 flow-root">
+					<dl class="-my-3 divide-y divide-gray-800">
+						<div class="grid gap-1 py-3 grid-cols-3 sm:gap-4">
+							<dt class="font-medium text-slate-50">text</dt>
+							<dd class="text-slate-100 col-span-2">Tulisan</dd>
+						</div>
+						<div class="grid gap-1 py-3 grid-cols-3 sm:gap-4">
+							<dt class="font-medium text-slate-50">img</dt>
+							<dd class="text-slate-100 col-span-2">Url/link gambar</dd>
+						</div>
+						<div class="grid gap-1 py-3 grid-cols-3 sm:gap-4">
+							<dt class="font-medium text-slate-50">color</dt>
+							<dd class="text-slate-100 col-span-2">Warna tulisan, gunakan kode HEX: #ffffff atau tailwind: sky-400</dd>
+						</div>
+						<div class="grid gap-1 py-3 grid-cols-3 sm:gap-4">
+							<dt class="font-medium text-slate-50">bg</dt>
+							<dd class="text-slate-100 col-span-2">Warna latar, gunakan kode HEX: #ffffff atau tailwind: sky-400</dd>
+						</div>
+						<div class="grid gap-1 py-3 grid-cols-3 sm:gap-4">
+							<dt class="font-medium text-slate-50">circle</dt>
+							<dd class="text-slate-100 col-span-2">Tanpa nilai, tambahkan ini agar gambar berbentuk lingkaran</dd>
+						</div>
+					</dl>
+				</div>
+			</details>
+		</div>
+	</main>
 </body>
+
 </html>
