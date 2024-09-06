@@ -319,7 +319,7 @@ app.get('/v0', async (req, res) => {
   const circle = req.query?.circle != 'false' && req.query?.circle !== undefined
   let image = '';
   try {
-    image = await loadImage(req.query.image || favicon);
+    image = await loadImage(req.query.img || favicon);
   } catch (error) {
     image = await loadImage(favicon);
   }
@@ -346,7 +346,7 @@ app.get('/v1', async (req, res) => {
   const circle = req.query?.circle != 'false' && req.query?.circle !== undefined
   let image = '';
   try {
-    image = await loadImage(req.query.image || favicon);
+    image = await loadImage(req.query.img || favicon);
   } catch (error) {
     image = await loadImage(favicon);
   }
