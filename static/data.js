@@ -1,16 +1,14 @@
-const { query } = require("express")
-
 const url = 'https://reyycard.vercel.app'
 
 const data = [
   {
     id: '/v1',
     desc: 'version 1 description',
-    q: ['text', 'img', 'color', 'bg', 'circle']
+    query: ['text', 'img', 'color', 'bg', 'circle']
   }
 ]
 
-const q = {
+const query = {
   text: {
     ex: 'hello+world',
     desc: 'Tulisan'

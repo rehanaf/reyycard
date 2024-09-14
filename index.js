@@ -1,6 +1,7 @@
 const express = require('express');
-const { createCanvas, loadImage, registerFont } = require('canvas');
+const { loadImage, registerFont } = require('canvas');
 const path = require('path');
+const { v1, v0 } = require('./lib/card');
 
 const app = express();
 const PORT = 3000;
@@ -313,30 +314,28 @@ app.use(express.static(path.join(__dirname, 'static')));
 
 app.get('/v0', async (req, res) => {
   // dapatkan data dari query parameter
-  const text = req.query.text || 'reyycard v0';
+  const text = req.query.text || 'reyycard v1';
   const color = getColor(req.query.color || 'white');
   const bg = getColor(req.query.bg || 'black');
   const circle = req.query?.circle != 'false' && req.query?.circle !== undefined
   let image = '';
   try {
-    image = await loadImage(req.query.img || favicon);
+    image = await loadImage(req.query.image || favicon);
   } catch (error) {
     image = await loadImage(favicon);
   }
-  // Buat canvas
-  const width = 1200;
-  const height = 720;
-  const canvas = createCanvas(width, height);
-  const ctx = canvas.getContext('2d');
-
-  // Gambar latar belakang
-  ctx.fillStyle = bg;
-  ctx.fillRect(0, 0, width, height);
 
   // Kirim gambar canvas sebagai respons
   res.setHeader('Content-Type', 'image/png');
-  res.send(canvas.toBuffer('image/png'));
-})
+  const v = {
+    text: text,
+    color: color,
+    bg: bg,
+    image: image,
+    circle: circle
+  }
+  res.send(v0(v));
+});
 
 app.get('/v1', async (req, res) => {
   // dapatkan data dari query parameter
@@ -346,49 +345,21 @@ app.get('/v1', async (req, res) => {
   const circle = req.query?.circle != 'false' && req.query?.circle !== undefined
   let image = '';
   try {
-    image = await loadImage(req.query.img || favicon);
+    image = await loadImage(req.query.image || favicon);
   } catch (error) {
     image = await loadImage(favicon);
   }
 
-  // Buat canvas
-  const width = 1200;
-  const height = 720;
-  const canvas = createCanvas(width, height);
-  const ctx = canvas.getContext('2d');
-
-  // Gambar latar belakang
-  ctx.fillStyle = bg;
-  ctx.fillRect(0, 0, width, height);
-
-  // Muat gambar dan gambar potong bulat
-  const x = width / 2;
-  const y = 120;
-
-  // Gambar lingkaran putih sebagai potongan gambar
-  ctx.save();
-  if (circle) {
-    ctx.beginPath();
-    ctx.arc(x, y + 180, 180, 0, Math.PI * 2);
-    ctx.clip();
-  }
-
-  // draw image
-  const imageHeight = 360;
-  const imageWidth = circle ? imageHeight : imageHeight * (image.width / image.height);
-  ctx.drawImage(image, x - imageWidth / 2, y, imageWidth, imageHeight);
-  ctx.restore();
-
-  // Gambar teks
-  ctx.fillStyle = color;
-  ctx.font = '500 80px Poppins';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText(text, width / 2, 600);
-
   // Kirim gambar canvas sebagai respons
   res.setHeader('Content-Type', 'image/png');
-  res.send(canvas.toBuffer('image/png'));
+  const v = {
+    text: text,
+    color: color,
+    bg: bg,
+    image: image,
+    circle: circle
+  }
+  res.send(v1(v));
 });
 
 
